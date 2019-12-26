@@ -38,8 +38,8 @@ Then start any stopped services/containers again.
 ## Run it fully automated every week
 
 If you add `docker-compose up` to your crontab for
- weekly execution, it may cause problems if other
- services/containers are listening on port 80 which
+ weekly execution, it may cause problems if there are other
+ services/containers listening on port 80 which
  is required for the renewal.
 
 Therefore you can use the `autoRenewCertificates`
