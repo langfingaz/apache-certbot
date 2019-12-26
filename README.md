@@ -38,8 +38,9 @@ Then start your normal containers again.
 ## Run it fully automated every week
 
 Edit `autoRenewCertificates` and adjust `stop()` and `start()`
- depending on if you want some docker containers to be stopped / started.
- Also don't forget to adjust the location of this folder in line 5. 
+ depending on if you want some docker containers to be stopped during
+ certificate renewal.
+ Also don't forget to adjust the location of your copy of this repo in line 5. 
 
 Run
 
