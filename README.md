@@ -23,7 +23,7 @@ They will be stored in `./letsencrypt` and can be mounted
 
 Edit `docker-compose.yml` and replace `EMAIL` with your
  email for letsencrypt aswell as `DOMAINS` with a comma-
-separated list of all domaiins you want to generate a
+separated list of all domains you want to generate a
  certificate for.
 
 ## Run it
