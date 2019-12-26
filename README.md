@@ -33,7 +33,7 @@ If there are other services/containers running on port 80,
 
 `sudo docker-compose build && sudo docker-compose up`
 
-Then start your normal containers again.
+Then start any stopped services/containers again.
 
 ## Run it fully automated every week
 
