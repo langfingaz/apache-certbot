@@ -37,18 +37,28 @@ Then start your normal containers again.
 
 ## Run it fully automated every week
 
-Edit `autoRenewCertificates` and adjust `stop()` and `start()`
- depending on if you want some docker containers to be stopped during
+If you add `docker-compose up` to your crontab for
+ weekly execution, it may cause problems if other
+ services/containers are listening on port 80 which
+ is required for the renewal.
+
+Therefore you can use the `autoRenewCertificates`
+ script which is an example of how to to first stop
+ conflicting docker containers and then start
+ them again after renewal.
+
+Simply edit `autoRenewCertificates` and adjust `stop()` and `start()`
+ depending on the docker containers to be stopped during
  certificate renewal.
  Also don't forget to adjust the location of your copy of this repo in line 5. 
 
-Run
+Then run
 
 `sudo EDITOR=nano crontab -e`
 
-and add this line:
+and add the following two lines
 
 ```
-# weekly 05:30am => certificates
+# run weekly at 05:30am
 30 5 * * 1 <path-to-apache-certbot-folder>/autoRenewCertificates
 ```
