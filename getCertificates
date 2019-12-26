@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# you won't need to change
+# anything in here ;)
+
+startApache(){
+  echo "Starting Apache2"
+  apachectl start || exit 1
+}
+
+# $1: domain
+renewCertificate(){
+  certbot certonly --apache --agree-tos -n \
+    -m "$EMAIL" \
+    -d "$1"
+}
+
+main(){
+  echo "Generating certificates with email $EMAIL"
+  arr=(`echo $DOMAINS | sed 's/,/\n/g'`)
+
+  ERRNO=0
+
+  for DOMAIN in "${arr[@]}"; do
+    echo "Domain: $DOMAIN"
+    renewCertificate "$DOMAIN"
+
+    if [ "$?" -ne "0" ]
+    then
+      ERRNO=1
+    fi
+  done
+  return "$ERRNO"
+}
+
+startApache
+
+# run main() and return it's result as exit code
+main

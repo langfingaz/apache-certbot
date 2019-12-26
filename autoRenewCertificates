@@ -1,0 +1,49 @@
+#!/bin/bash
+
+# adjust start() and stop() to your needs
+# and replace path to local copy of this repo below
+apache-certbot-path=<path-to-apache-certbot-folder>
+
+ERRNO=0
+
+dk(){
+  sudo docker-compose -f "$1" "$2" "$3"
+}
+
+stop(){
+  dk <path_to_docker-compose.yml_1>	stop
+  dk <path_to_docker-compose.yml_2>	stop
+}
+
+start(){
+  dk <paht_to_docker-compose.yml_1>	up -d
+  dk <paht_to_docker-compose.yml_1>	up -d
+}
+
+echo "Stop all docker containers"
+stop
+
+if [ "$(sudo docker ps | wc -l)" -ne "1" ]
+then
+  echo "Seems like there are still some docker containers running!"
+  echo "Won't try to renew certificates"
+  start
+  exit 1
+fi
+
+sudo docker-compose -f "$pache-certbot-path"/docker-compose.yml build && \
+sudo docker-compose -f "$pache-certbot-path"/docker-compose.yml up
+
+if [ "$?" -ne "0" ]
+then
+  ERRNO=1
+fi
+
+start
+
+if [ "$?" -ne "0" ]
+then
+  ERRNO=1
+fi
+
+exit "$ERRNO"

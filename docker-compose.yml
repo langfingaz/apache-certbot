@@ -1,0 +1,16 @@
+# adjust the environment variables to your needs
+
+version: '3.7'
+services:
+  apache-certbot:
+    container_name: apache-certbot
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+     - "80:80/tcp"
+    volumes:
+     - ./letsencrypt:/etc/letsencrypt
+    environment:
+     - EMAIL=<YOUR-EMAIL>
+     - DOMAINS=<FIRST-DOMAIN>,<SECOND-DOMAIN>
