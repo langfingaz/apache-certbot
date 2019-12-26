@@ -28,7 +28,7 @@ separated list of all domains you want to generate a
 
 ## Run it
 
-If there are other containers running that use port 80 / 443,
+If there are other services/containers running on port 80,
  stop them.
 
 `sudo docker-compose build && sudo docker-compose up`
