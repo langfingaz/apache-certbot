@@ -10,6 +10,9 @@ They will be stored in `./letsencrypt` and can be mounted
  as readonly into any other docker container with:
 
 ```
+# docker-compose.yml
+# services:
+#  serviceOne
 # ...
     volumes:
      - <path-to-apache-certbot>/letsencrypt:/etc/letsencrypt:ro
