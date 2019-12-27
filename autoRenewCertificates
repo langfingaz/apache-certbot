@@ -6,18 +6,21 @@ apache-certbot-path=<path-to-apache-certbot-folder>
 
 ERRNO=0
 
-dk(){
-  sudo docker-compose -f "$1" "$2" "$3"
+dk_stop(){
+  sudo docker-compose -f "$1" stop
+}
+dk_start(){
+  sudo docker-compose -f "$1" up -d
 }
 
 stop(){
-  dk <path_to_docker-compose.yml_1>	stop
-  dk <path_to_docker-compose.yml_2>	stop
+  dk_stop <path_to_docker-compose.yml_1>
+  dk_stop <path_to_docker-compose.yml_2>
 }
 
 start(){
-  dk <paht_to_docker-compose.yml_1>	up -d
-  dk <paht_to_docker-compose.yml_1>	up -d
+  dk_start <paht_to_docker-compose.yml_1>
+  dk_start <paht_to_docker-compose.yml_1>
 }
 
 echo "Stop all docker containers"
